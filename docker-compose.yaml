@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  database:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: dockerfile.database
+      args:
+        - DATABASE_IMAGE_TAG=${DATABASE_IMAGE_TAG}
+    container_name: ${DATABASE_CONTAINER_NAME}
+    ports:
+      - "5432:5432"
+
+  core:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: dockerfile.core
+      args:
+        - CORE_IMAGE_TAG=${CORE_IMAGE_TAG}
+    container_name: ${CORE_CONTAINER_NAME}
+    depends_on:
+      - database
