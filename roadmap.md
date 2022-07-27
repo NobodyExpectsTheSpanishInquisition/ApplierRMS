@@ -2,7 +2,7 @@
 
 ## PHASE I
 
-### CORE
+### Accounts
 1. Register account - Create an account for user, get data about company and user who will be company admin
 2. Add HR accounts to company - Add accounts to use by HR
 3. Add position - Add position, get title, created at

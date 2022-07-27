@@ -13,12 +13,12 @@ services:
     ports:
       - "5432:5432"
 
-  core:
+  accounts:
     env_file:
       - .env
     build:
       context: .
-      dockerfile: dockerfile.core
+      dockerfile: dockerfile.accounts
       args:
         - CORE_IMAGE_TAG=${CORE_IMAGE_TAG}
     container_name: ${CORE_CONTAINER_NAME}
