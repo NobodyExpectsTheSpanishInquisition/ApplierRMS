@@ -28,3 +28,4 @@ services:
       - ./config/php.ini.example:/usr/local/etc/php/php.ini:ro
       - ./config/xdebug.ini.example:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
       - ./config/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
+      - ./api/accounts:/var/www/html/api:rw
