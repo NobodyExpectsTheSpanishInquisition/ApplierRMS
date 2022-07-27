@@ -30,12 +30,15 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "App\\Write\\": "src/Write/",
+            "App\\Read\\": "src/Write/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "App\\Tests\\Write\\": "tests/Read/",
+            "App\\Tests\\Read\\": "tests/Write/"
         }
     },
     "replace": {
