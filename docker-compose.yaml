@@ -24,3 +24,5 @@ services:
     container_name: ${CORE_CONTAINER_NAME}
     depends_on:
       - database
+    volumes:
+      - ./config/php.ini.example:/usr/local/etc/php/php.ini:ro
