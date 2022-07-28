@@ -29,3 +29,18 @@ services:
       - ./config/xdebug.ini.example:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
       - ./config/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
       - ./api/accounts:/var/www/html/api:rw
+      - ./logs/accounts/php.log:/var/log/fpm-php.www.log
+
+  nginx:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: dockerfile.nginx
+      args:
+        - IMAGE_TAG=${NGINX_IMAGE_TAG}
+    container_name: ${NGINX_CONTAINER_NAME}
+    ports:
+      - ${NGINX_ACCOUNTS_PORT}:80
+    volumes:
+      - ./logs/nginx:/var/log/nginx/

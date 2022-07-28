@@ -7,6 +7,7 @@ RUN apk add --no-cache ${PHPIZE_DEPS} \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug
 
+COPY ./config/opcache.ini.example /usr/local/etc/php/conf.d/opcache.ini
 COPY ./api/accounts /var/www/html/api
 
 WORKDIR /var/www/html/api
