@@ -20,8 +20,8 @@ services:
       context: .
       dockerfile: dockerfile.accounts
       args:
-        - ACCOUNTS_IMAGE_TAG=${CORE_IMAGE_TAG}
-    container_name: ${CORE_CONTAINER_NAME}
+        - IMAGE_TAG=${ACCOUNTS_IMAGE_TAG}
+    container_name: ${ACCOUNTS_CONTAINER_NAME}
     depends_on:
       - database
     volumes:
