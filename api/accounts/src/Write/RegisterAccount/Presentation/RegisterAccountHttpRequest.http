@@ -1,0 +1,13 @@
+POST http://localhost:8080/index.php/api/accounts
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": "56CDC8B2-9D72-44AB-A4EA-0754871B2F34",
+  "companyName": "test company name",
+  "userFirstName": "User",
+  "userLastName": "User",
+  "userEmail": "email@email.com"
+}
+
+

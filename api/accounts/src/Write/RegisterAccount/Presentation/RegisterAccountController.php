@@ -10,7 +10,14 @@ use Symfony\Component\HttpFoundation\Request;
 
 final class RegisterAccountController extends AbstractController
 {
+    public function __construct(private RegisterAccountRequestDenormalizer $denormalizer)
+    {
+    }
+
     public function register(Request $request): JsonResponse
     {
+        $denormalizedRequest = $this->denormalizer->denormalize($request, RegisterAccountRequest::class);
+
+        return new JsonResponse();
     }
 }
