@@ -9,8 +9,8 @@ services:
     App\Write\:
         resource: '../src/Write/'
 
-    App\Write\RegisterAccount\Presentation\RegisterAccountRequestDenormalizer:
-        factory: ['App\Write\RegisterAccount\Presentation\RegisterAccountRequestDenormalizerFactory', 'create']
+    App\Write\RegisterCompany\Presentation\RegisterCompanyRequestDenormalizer:
+        factory: ['App\Write\RegisterCompany\Presentation\RegisterCompanyRequestDenormalizerFactory', 'create']
 
     _instanceof:
         App\Write\Shared\Application\Cqrs\CommandHandlerInterface:

@@ -2,29 +2,29 @@
 
 declare(strict_types=1);
 
-namespace App\Write\RegisterAccount\Presentation;
+namespace App\Write\RegisterCompany\Presentation;
 
-use App\Write\RegisterAccount\Application\RegisterAccountCommand;
+use App\Write\RegisterCompany\Application\RegisterCompanyCommand;
 use App\Write\Shared\Application\Cqrs\CommandBusInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-final class RegisterAccountController extends AbstractController
+final class RegisterCompanyController extends AbstractController
 {
     public function __construct(
-        private readonly RegisterAccountRequestDenormalizer $denormalizer,
+        private readonly RegisterCompanyRequestDenormalizer $denormalizer,
         private readonly CommandBusInterface $commandBus
     ) {
     }
 
     public function register(Request $request): JsonResponse
     {
-        /** @var RegisterAccountRequest $denormalizedRequest */
-        $denormalizedRequest = $this->denormalizer->denormalize($request, RegisterAccountRequest::class);
+        /** @var RegisterCompanyRequest $denormalizedRequest */
+        $denormalizedRequest = $this->denormalizer->denormalize($request, RegisterCompanyRequest::class);
 
         $this->commandBus->dispatch(
-            new RegisterAccountCommand(
+            new RegisterCompanyCommand(
                 $denormalizedRequest->getId(),
                 $denormalizedRequest->getCompanyName(),
                 $denormalizedRequest->getUserFirstName(),

@@ -8,10 +8,10 @@
 #  prefix: /api
 #  name_prefix: api_
 
-api_register_account:
-  path: /api/accounts
+api_register_company:
+  path: /api/companies
   methods: POST
-  controller: App\Write\RegisterAccount\Presentation\RegisterAccountController::register
+  controller: App\Write\RegisterCompany\Presentation\RegisterCompanyController::register
 #WRITE
 
 #READ

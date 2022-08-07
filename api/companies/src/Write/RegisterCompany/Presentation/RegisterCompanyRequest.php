@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Write\RegisterAccount\Presentation;
+namespace App\Write\RegisterCompany\Presentation;
 
-use App\Shared\Domain\UserFirstName;
-use App\Shared\Domain\ValueObject\AccountId;
+use App\Shared\Domain\FirstName;
+use App\Shared\Domain\ValueObject\CompanyId;
 use App\Shared\Domain\ValueObject\CompanyName;
 use App\Shared\Domain\ValueObject\Email;
-use App\Shared\Domain\ValueObject\UserLastName;
+use App\Shared\Domain\ValueObject\LastName;
 
-final class RegisterAccountRequest
+final class RegisterCompanyRequest
 {
     public function __construct(
         private readonly string $id,
@@ -21,9 +21,9 @@ final class RegisterAccountRequest
     ) {
     }
 
-    public function getId(): AccountId
+    public function getId(): CompanyId
     {
-        return new AccountId($this->id);
+        return new CompanyId($this->id);
     }
 
     public function getCompanyName(): CompanyName
@@ -31,14 +31,14 @@ final class RegisterAccountRequest
         return new CompanyName($this->companyName);
     }
 
-    public function getUserFirstName(): UserFirstName
+    public function getUserFirstName(): FirstName
     {
-        return new UserFirstName($this->userFirstName);
+        return new FirstName($this->userFirstName);
     }
 
-    public function getUserLastName(): UserLastName
+    public function getUserLastName(): LastName
     {
-        return new UserLastName($this->userLastName);
+        return new LastName($this->userLastName);
     }
 
     public function getUserEmail(): Email

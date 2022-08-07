@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Write\RegisterAccount\Presentation;
+namespace App\Write\RegisterCompany\Presentation;
 
 use App\Shared\Presentation\Validation\AbstractRequestDenormalizer;
 use App\Shared\Presentation\Validation\ValidationRule;
@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints\Required;
 use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\Constraints\Uuid;
 
-final class RegisterAccountRequestDenormalizer extends AbstractRequestDenormalizer
+final class RegisterCompanyRequestDenormalizer extends AbstractRequestDenormalizer
 {
     private const ID_PROPERTY = 'id';
     private const COMPANY_NAME_PROPERTY = 'companyName';
