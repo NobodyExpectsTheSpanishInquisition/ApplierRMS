@@ -12,7 +12,7 @@ COPY ./config/xdebug.ini.example /usr/local/etc/php/conf.d/docker-php-ext-xdebug
 COPY ./config/php.ini.example /usr/local/etc/php/php.ini
 COPY ./config/error_reporting.ini /usr/local/etc/php/conf.d/error_reporting.ini
 
-COPY ./api/accounts /var/www/html/api
+COPY ./api/companies /var/www/html/api
 
 WORKDIR /var/www/html/api
 

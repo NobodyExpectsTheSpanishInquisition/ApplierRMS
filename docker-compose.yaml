@@ -13,20 +13,20 @@ services:
     ports:
       - "5432:5432"
 
-  accounts:
+  companies:
     env_file:
       - .env
     build:
       context: .
-      dockerfile: dockerfile.accounts
+      dockerfile: dockerfile.companies
       args:
-        - IMAGE_TAG=${ACCOUNTS_IMAGE_TAG}
-    container_name: ${ACCOUNTS_CONTAINER_NAME}
+        - IMAGE_TAG=${COMPANIES_IMAGE_TAG}
+    container_name: ${COMPANIES_CONTAINER_NAME}
     depends_on:
       - database
     volumes:
-      - ./api/accounts:/var/www/html/api:rw
-      - ./logs/accounts/php.log:/var/log/fpm-php.www.log
+      - ./api/companies:/var/www/html/api:rw
+      - ./logs/companies/php.log:/var/log/fpm-php.www.log
 
   nginx:
     env_file:
@@ -41,6 +41,6 @@ services:
       - ${NGINX_ACCOUNTS_PORT}:80
     volumes:
       - ./logs/nginx:/var/log/nginx/:rw
-      - ./api/accounts/:/var/www/html/api/:rw
+      - ./api/companies/:/var/www/html/api/:rw
     depends_on:
-      - accounts
+      - companies
