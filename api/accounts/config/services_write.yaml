@@ -11,3 +11,8 @@ services:
 
     App\Write\RegisterAccount\Presentation\RegisterAccountRequestDenormalizer:
         factory: ['App\Write\RegisterAccount\Presentation\RegisterAccountRequestDenormalizerFactory', 'create']
+
+    _instanceof:
+        App\Write\Shared\Application\Cqrs\CommandHandlerInterface:
+            tags:
+                - { name: messenger.message_handler, bus: messenger.bus.default }
