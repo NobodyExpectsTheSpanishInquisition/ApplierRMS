@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Write\RegisterCompany\Application;
 
-use App\Shared\Domain\FirstName;
 use App\Shared\Domain\ValueObject\CompanyId;
 use App\Shared\Domain\ValueObject\CompanyName;
 use App\Shared\Domain\ValueObject\Email;
+use App\Shared\Domain\ValueObject\FirstName;
 use App\Shared\Domain\ValueObject\LastName;
 use App\Write\Shared\Application\Cqrs\CommandInterface;
 

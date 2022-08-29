@@ -27,9 +27,9 @@ final class RegisterCompanyController extends AbstractController
             new RegisterCompanyCommand(
                 $denormalizedRequest->getId(),
                 $denormalizedRequest->getCompanyName(),
-                $denormalizedRequest->getUserFirstName(),
-                $denormalizedRequest->getUserLastName(),
-                $denormalizedRequest->getUserEmail()
+                $denormalizedRequest->getFirstName(),
+                $denormalizedRequest->getLastName(),
+                $denormalizedRequest->getEmail()
             )
         );
 
