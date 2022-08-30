@@ -7,6 +7,7 @@ namespace App\Write\Shared\Domain\Factory;
 use App\Shared\Domain\ValueObject\AccountId;
 use App\Shared\Domain\ValueObject\CompanyId;
 use App\Shared\Domain\ValueObject\CompanyName;
+use App\Shared\Domain\ValueObject\Email;
 use App\Shared\Domain\ValueObject\FirstName;
 use App\Shared\Domain\ValueObject\LastName;
 use App\Shared\Domain\ValueObject\UserId;
@@ -24,12 +25,13 @@ final class CompanyFactory
         AccountId $mainAccountId,
         UserId $mainUserId,
         FirstName $firstName,
-        LastName $lastName
+        LastName $lastName,
+        Email $email
     ): Company {
         return new Company(
             $companyId,
             $companyName,
-            $this->accountFactory->create($mainAccountId, $mainUserId, $firstName, $lastName)
+            $this->accountFactory->create($mainAccountId, $mainUserId, $firstName, $lastName, $email)
         );
     }
 }

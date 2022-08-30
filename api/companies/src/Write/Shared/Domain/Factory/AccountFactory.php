@@ -13,6 +13,10 @@ use App\Write\Shared\Domain\Model\Account;
 
 final class AccountFactory
 {
+    public function __construct(private readonly UserFactory $userFactory)
+    {
+    }
+
     public function create(
         AccountId $accountId,
         UserId $mainUserId,
@@ -20,6 +24,6 @@ final class AccountFactory
         LastName $firstName,
         Email $email
     ): Account {
-        return new Account($accountId, $mainUserId, $lastName, $firstName);
+        return new Account($accountId, $this->userFactory->create($mainUserId, $lastName, $firstName, $email));
     }
 }
