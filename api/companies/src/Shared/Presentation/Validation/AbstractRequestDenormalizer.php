@@ -54,7 +54,13 @@ abstract class AbstractRequestDenormalizer
     private function denormalizeToObject(array $data, string $targetClassname): object
     {
         try {
-            return $this->denormalizer->denormalize($data, $targetClassname);
+            $denormalizedData = $this->denormalizer->denormalize($data, $targetClassname);
+
+            if (false === is_object($denormalizedData)) {
+                throw new RuntimeException('Denormalization to object failed.');
+            }
+
+            return $denormalizedData;
         } catch (ExceptionInterface $e) {
             throw new RuntimeException($e->getMessage());
         }

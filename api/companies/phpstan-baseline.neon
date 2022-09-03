@@ -1,0 +1,66 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method App\\\\Shared\\\\Presentation\\\\Validation\\\\AbstractRequestDenormalizer\\:\\:decode\\(\\) should return array\\<int\\|string, mixed\\> but returns mixed\\.$#"
+			count: 1
+			path: src/Shared/Presentation/Validation/AbstractRequestDenormalizer.php
+
+		-
+			message: "#^Parameter \\#3 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Shared/Presentation/Validation/ValidationBuilder.php
+
+		-
+			message: "#^Property App\\\\Write\\\\Shared\\\\Domain\\\\Event\\\\CompanyRegistered\\:\\:\\$company is never read, only written\\.$#"
+			count: 1
+			path: src/Write/Shared/Domain/Event/CompanyRegistered.php
+
+		-
+			message: "#^Property App\\\\Write\\\\Shared\\\\Domain\\\\Model\\\\Account\\:\\:\\$mainAccountId is never read, only written\\.$#"
+			count: 1
+			path: src/Write/Shared/Domain/Model/Account.php
+
+		-
+			message: "#^Property App\\\\Write\\\\Shared\\\\Domain\\\\Model\\\\Account\\:\\:\\$user is never read, only written\\.$#"
+			count: 1
+			path: src/Write/Shared/Domain/Model/Account.php
+
+		-
+			message: "#^Property App\\\\Write\\\\Shared\\\\Domain\\\\Model\\\\Company\\:\\:\\$accounts is never read, only written\\.$#"
+			count: 1
+			path: src/Write/Shared/Domain/Model/Company.php
+
+		-
+			message: "#^Property App\\\\Write\\\\Shared\\\\Domain\\\\Model\\\\Company\\:\\:\\$companyId is never read, only written\\.$#"
+			count: 1
+			path: src/Write/Shared/Domain/Model/Company.php
+
+		-
+			message: "#^Property App\\\\Write\\\\Shared\\\\Domain\\\\Model\\\\Company\\:\\:\\$companyName is never read, only written\\.$#"
+			count: 1
+			path: src/Write/Shared/Domain/Model/Company.php
+
+		-
+			message: "#^Property App\\\\Write\\\\Shared\\\\Domain\\\\Model\\\\User\\:\\:\\$email is never read, only written\\.$#"
+			count: 1
+			path: src/Write/Shared/Domain/Model/User.php
+
+		-
+			message: "#^Property App\\\\Write\\\\Shared\\\\Domain\\\\Model\\\\User\\:\\:\\$firstName is never read, only written\\.$#"
+			count: 1
+			path: src/Write/Shared/Domain/Model/User.php
+
+		-
+			message: "#^Property App\\\\Write\\\\Shared\\\\Domain\\\\Model\\\\User\\:\\:\\$lastName is never read, only written\\.$#"
+			count: 1
+			path: src/Write/Shared/Domain/Model/User.php
+
+		-
+			message: "#^Property App\\\\Write\\\\Shared\\\\Domain\\\\Model\\\\User\\:\\:\\$userId is never read, only written\\.$#"
+			count: 1
+			path: src/Write/Shared/Domain/Model/User.php
+
+		-
+			message: "#^Property App\\\\Write\\\\Shared\\\\Infrastructure\\\\Event\\\\MessengerEventBus\\:\\:\\$events is never read, only written\\.$#"
+			count: 1
+			path: src/Write/Shared/Infrastructure/Event/MessengerEventBus.php
