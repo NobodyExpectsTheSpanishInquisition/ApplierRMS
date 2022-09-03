@@ -1,0 +1,19 @@
+ARG IMAGE_TAG
+FROM php:${IMAGE_TAG}
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN apk add --no-cache ${PHPIZE_DEPS} \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
+COPY ./config/opcache.ini.example /usr/local/etc/php/conf.d/opcache.ini
+COPY ./config/xdebug.ini.example /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+COPY ./config/php.ini.example /usr/local/etc/php/php.ini
+COPY ./config/error_reporting.ini /usr/local/etc/php/conf.d/error_reporting.ini
+
+COPY ./api/companies /var/www/html/api
+
+WORKDIR /var/www/html/api
+
+RUN composer install && composer update && composer dump-autoload

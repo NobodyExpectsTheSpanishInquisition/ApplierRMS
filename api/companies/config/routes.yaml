@@ -1,0 +1,21 @@
+#controllers_write:
+#  resource: '../src/Write/*'
+#  prefix: /api
+#  name_prefix: api_
+#
+#controllers_read:
+#  resource: '../src/Read/*'
+#  prefix: /api
+#  name_prefix: api_
+
+api_register_company:
+  path: /api/companies
+  methods: POST
+  controller: App\Write\RegisterCompany\Presentation\RegisterCompanyController::register
+#WRITE
+
+#READ
+
+kernel:
+  resource: ../src/Kernel.php
+  type: annotation

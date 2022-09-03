@@ -1,0 +1,17 @@
+services: # default configuration for services in *this* file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+  # makes classes in src/ available to be used as services
+  # this creates a service per class whose id is the fully-qualified class name
+  App\Write\:
+    resource: '../src/Write/'
+
+  App\Write\RegisterCompany\Presentation\RegisterCompanyRequestDenormalizer:
+    factory: [ 'App\Write\RegisterCompany\Presentation\RegisterCompanyRequestDenormalizerFactory', 'create' ]
+
+  _instanceof:
+    App\Write\Shared\Application\Cqrs\CommandHandlerInterface:
+      tags:
+        - { name: messenger.message_handler, bus: messenger.bus.default }
