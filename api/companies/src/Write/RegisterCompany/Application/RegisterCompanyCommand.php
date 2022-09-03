@@ -18,7 +18,7 @@ final class RegisterCompanyCommand implements CommandInterface
         public readonly CompanyName $companyName,
         public readonly FirstName $firstName,
         public readonly LastName $lastName,
-        public readonly Email $email)
-    {
+        public readonly Email $email
+    ) {
     }
 }

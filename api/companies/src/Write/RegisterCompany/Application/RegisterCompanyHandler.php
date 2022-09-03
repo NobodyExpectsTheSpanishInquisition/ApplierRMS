@@ -40,4 +40,3 @@ final class RegisterCompanyHandler implements CommandHandlerInterface
         $this->eventBus->dispatch();
     }
 }
-
