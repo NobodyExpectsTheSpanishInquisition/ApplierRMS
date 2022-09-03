@@ -1,0 +1,11 @@
+parameters:
+    level: 9
+    paths:
+        - src
+        - tests
+    tmpDir: /var/cache
+    fileExtensions:
+        - php
+
+
+# TODO: Add custom rule for unread properties for php 8.1
