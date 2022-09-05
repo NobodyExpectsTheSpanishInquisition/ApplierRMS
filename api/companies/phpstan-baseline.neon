@@ -61,6 +61,26 @@ parameters:
 			path: src/Write/Shared/Domain/Model/User.php
 
 		-
+			message: "#^Property App\\\\Write\\\\Shared\\\\Infrastructure\\\\Entity\\\\EventLog\\:\\:\\$createdAt is never read, only written\\.$#"
+			count: 1
+			path: src/Write/Shared/Infrastructure/Entity/EventLog.php
+
+		-
+			message: "#^Property App\\\\Write\\\\Shared\\\\Infrastructure\\\\Entity\\\\EventLog\\:\\:\\$data is never read, only written\\.$#"
+			count: 1
+			path: src/Write/Shared/Infrastructure/Entity/EventLog.php
+
+		-
+			message: "#^Property App\\\\Write\\\\Shared\\\\Infrastructure\\\\Entity\\\\EventLog\\:\\:\\$event is never read, only written\\.$#"
+			count: 1
+			path: src/Write/Shared/Infrastructure/Entity/EventLog.php
+
+		-
+			message: "#^Property App\\\\Write\\\\Shared\\\\Infrastructure\\\\Entity\\\\EventLog\\:\\:\\$id is never read, only written\\.$#"
+			count: 1
+			path: src/Write/Shared/Infrastructure/Entity/EventLog.php
+
+		-
 			message: "#^Property App\\\\Write\\\\Shared\\\\Infrastructure\\\\Event\\\\MessengerEventBus\\:\\:\\$events is never read, only written\\.$#"
 			count: 1
 			path: src/Write/Shared/Infrastructure/Event/MessengerEventBus.php

@@ -24,4 +24,12 @@ class EventLog
 
     #[Column(type: 'datetime_immutable')]
     private readonly DateTimeImmutable $createdAt;
+
+    public function __construct(string $id, string $event, string $data, DateTimeImmutable $createdAt)
+    {
+        $this->id = $id;
+        $this->event = $event;
+        $this->data = $data;
+        $this->createdAt = $createdAt;
+    }
 }
