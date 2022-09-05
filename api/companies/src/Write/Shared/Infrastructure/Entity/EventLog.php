@@ -17,11 +17,11 @@ class EventLog
     private readonly string $id;
 
     #[Column(type: 'string')]
-    private string $event;
+    private readonly string $event;
 
     #[Column(type: 'json')]
-    private string $data;
+    private readonly string $data;
 
     #[Column(type: 'datetime_immutable')]
-    private DateTimeImmutable $createdAt;
+    private readonly DateTimeImmutable $createdAt;
 }
