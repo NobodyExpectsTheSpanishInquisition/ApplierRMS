@@ -7,6 +7,13 @@ RUN apk add --no-cache ${PHPIZE_DEPS} \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug
 
+RUN set -ex \
+  && apk --no-cache add \
+    postgresql-dev
+
+RUN docker-php-ext-install pdo pdo_pgsql \
+    && docker-php-ext-enable pdo_pgsql
+
 COPY ./config/opcache.ini.example /usr/local/etc/php/conf.d/opcache.ini
 COPY ./config/xdebug.ini.example /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 COPY ./config/php.ini.example /usr/local/etc/php/php.ini
