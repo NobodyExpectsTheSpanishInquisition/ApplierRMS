@@ -15,8 +15,8 @@ final class EventSerializerInterfaceTest extends IntegrationTestCase
 
         $result = $this->serializer->serialize(new EventStub($eventPropertyValue));
 
-        self::assertJson($result);
-        self::assertJsonStringEqualsJsonFile(__DIR__ . '/SerializedEventStub.json', $result);
+        self::assertJson($result->eventData);
+        self::assertJsonStringEqualsJsonFile(__DIR__ . '/SerializedEventStub.json', $result->eventData);
     }
 
     protected function setUp(): void

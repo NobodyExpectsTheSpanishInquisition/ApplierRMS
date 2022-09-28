@@ -13,8 +13,8 @@ final class JsonEventSerializer implements EventSerializerInterface
     {
     }
 
-    public function serialize(EventInterface $event): string
+    public function serialize(EventInterface $event): EventData
     {
-        return $this->serializer->serialize($event, 'json');
+        return new EventData($this->serializer->serialize($event, 'json'));
     }
 }

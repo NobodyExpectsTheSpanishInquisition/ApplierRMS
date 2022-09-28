@@ -12,3 +12,5 @@ services:
   App\Shared\Domain\Factory\AccountIdFactoryInterface: '@App\Shared\Infrastructure\Uuid\IdFactory'
 
   App\Shared\Domain\Factory\UserIdFactoryInterface: '@App\Shared\Infrastructure\Uuid\IdFactory'
+
+  App\Write\Shared\Application\Event\EventIdFactoryInterface: '@App\Shared\Infrastructure\Uuid\IdFactory'

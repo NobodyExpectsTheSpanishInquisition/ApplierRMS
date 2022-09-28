@@ -10,16 +10,16 @@ final class EventStore
 {
     public function __construct(
         private readonly EventSerializerInterface $encoder,
+        private readonly EventLogFactory $eventLogFactory
         //        private readonly EventLogRepositoryInterface $eventLogRepository,
-        //        private readonly EventLogFactory $eventLogFactory
     ) {
     }
 
     public function store(EventInterface $event): void
     {
         $serializedEventData = $this->encoder->serialize($event);
-//        $eventLog = $this->eventLogFactory->create($event, $normalizedEventData);
-//
-//        $this->eventLogRepository->save($eventLog);
+        $eventLog = $this->eventLogFactory->create($event, $serializedEventData);
+
+        //        $this->eventLogRepository->save($eventLog);
     }
 }

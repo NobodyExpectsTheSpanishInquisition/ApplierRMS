@@ -8,5 +8,5 @@ use App\Write\Shared\Domain\Event\EventInterface;
 
 interface EventSerializerInterface
 {
-    public function serialize(EventInterface $event): string;
+    public function serialize(EventInterface $event): EventData;
 }

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Write\Shared\Infrastructure\Entity;
 
+use App\Write\Shared\Application\Event\EventId;
+use App\Write\Shared\Domain\Event\EventInterface;
+use App\Write\Shared\Infrastructure\Event\EventStore\EventData;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -25,11 +28,11 @@ class EventLog
     #[Column(type: 'datetime_immutable')]
     private readonly DateTimeImmutable $createdAt;
 
-    public function __construct(string $id, string $event, string $data, DateTimeImmutable $createdAt)
+    public function __construct(EventId $id, EventInterface $event, EventData $data, DateTimeImmutable $createdAt)
     {
-        $this->id = $id;
-        $this->event = $event;
-        $this->data = $data;
+        $this->id = $id->uuid;
+        $this->event = $event::class;
+        $this->data = $data->eventData;
         $this->createdAt = $createdAt;
     }
 }
