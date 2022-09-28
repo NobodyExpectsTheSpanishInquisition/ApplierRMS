@@ -11,6 +11,9 @@ services: # default configuration for services in *this* file
   App\Write\RegisterCompany\Presentation\RegisterCompanyRequestDenormalizer:
     factory: [ 'App\Write\RegisterCompany\Presentation\RegisterCompanyRequestDenormalizerFactory', 'create' ]
 
+  App\Write\Shared\Infrastructure\Event\EventStore\EventSerializerInterface:
+    factory: [ 'App\Write\Shared\Infrastructure\Event\EventStore\EventSerializerFactory','create' ]
+
   _instanceof:
     App\Write\Shared\Application\Cqrs\CommandHandlerInterface:
       tags:

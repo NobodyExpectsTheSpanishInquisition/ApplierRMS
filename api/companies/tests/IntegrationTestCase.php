@@ -15,7 +15,11 @@ class IntegrationTestCase extends KernelTestCase
     {
         parent::setUp();
 
-        self::bootKernel();
+        self::bootKernel(
+            [
+                'env' => '.env.test',
+            ]
+        );
         $this->container = self::getContainer();
     }
 }

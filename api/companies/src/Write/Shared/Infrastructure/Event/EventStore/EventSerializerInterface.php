@@ -6,7 +6,7 @@ namespace App\Write\Shared\Infrastructure\Event\EventStore;
 
 use App\Write\Shared\Domain\Event\EventInterface;
 
-interface EventEncoderInterface
+interface EventSerializerInterface
 {
-    public function encode(EventInterface $event): string;
+    public function serialize(EventInterface $event): string;
 }
