@@ -9,7 +9,7 @@ use App\Write\Shared\Domain\Event\EventInterface;
 final class EventStore
 {
     public function __construct(
-        private readonly EventEncoderInterface $eventNormalizer,
+        private readonly EventEncoderInterface $encoder,
         private readonly EventLogRepositoryInterface $eventLogRepository,
         private readonly EventLogFactory $eventLogFactory
     ) {
@@ -17,7 +17,7 @@ final class EventStore
 
     public function store(EventInterface $event): void
     {
-        $normalizedEventData = $this->eventNormalizer->encode($event);
+        $normalizedEventData = $this->encoder->encode($event);
         $eventLog = $this->eventLogFactory->create($event, $normalizedEventData);
 
         $this->eventLogRepository->save($eventLog);
