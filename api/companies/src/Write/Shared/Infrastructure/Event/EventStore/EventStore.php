@@ -20,6 +20,10 @@ final class EventStore
         $serializedEventData = $this->encoder->serialize($event);
         $eventLog = $this->eventLogFactory->create($event, $serializedEventData);
 
-        $this->eventLogRepository->save($eventLog);
+        $this->eventLogRepository->wrapInTransaction(
+            function () use ($eventLog): void {
+                $this->eventLogRepository->save($eventLog);
+            }
+        );
     }
 }
