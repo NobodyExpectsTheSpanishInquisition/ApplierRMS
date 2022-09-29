@@ -11,7 +11,7 @@ use App\Write\Shared\Infrastructure\Event\EventStore\EventStore;
 final class MessengerEventBus implements EventBusInterface
 {
     /**
-     * @var array<int, \App\Write\Shared\Domain\Event\EventInterface> $events
+     * @var array<int, EventInterface> $events
      */
     private array $events = [];
 
@@ -21,6 +21,9 @@ final class MessengerEventBus implements EventBusInterface
 
     public function dispatch(): void
     {
+        foreach ($this->events as $event) {
+            $this->eventStore->store($event);
+        }
     }
 
     public function push(EventInterface $event): void
