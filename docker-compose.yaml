@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  database:
+  database_companies:
     env_file:
       - .env
     build:
@@ -9,9 +9,21 @@ services:
       dockerfile: dockerfile.database
       args:
         - DATABASE_IMAGE_TAG=${DATABASE_IMAGE_TAG}
-    container_name: ${DATABASE_CONTAINER_NAME}
+    container_name: ${DATABASE_COMPANIES_CONTAINER_NAME}
     ports:
-      - "5432:5432"
+      - "${DATABASE_COMPANIES_EXTERNAL_PORT}:5432"
+
+  database_auth:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: dockerfile.database
+      args:
+        - DATABASE_IMAGE_TAG=${DATABASE_IMAGE_TAG}
+    container_name: ${DATABASE_AUTH_CONTAINER_NAME}
+    ports:
+      - "${DATABASE_AUTH_EXTERNAL_PORT}:5432"
 
   companies:
     env_file:
@@ -23,7 +35,7 @@ services:
         - IMAGE_TAG=${COMPANIES_IMAGE_TAG}
     container_name: ${COMPANIES_CONTAINER_NAME}
     depends_on:
-      - database
+      - database_companies
     volumes:
       - ./api/companies:/var/www/html/api:rw
       - ./logs/companies/php.log:/var/log/fpm-php.www.log
