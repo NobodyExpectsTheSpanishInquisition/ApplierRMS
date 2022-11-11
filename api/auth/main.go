@@ -3,6 +3,7 @@ package main
 import (
 	. "auth/config"
 	. "auth/database"
+	"log"
 )
 
 func main() {
@@ -12,19 +13,19 @@ func main() {
 	executeMigrations(db)
 }
 
-func initConfig() Reader {
+func initConfig() *Reader {
 	reader, err := InitConfigReader()
 	if nil != err {
-		panic(err.Error())
+		log.Fatal(err.Error())
 	}
 
 	return reader
 }
 
-func createDatabaseConnection(reader Reader) *Database {
+func createDatabaseConnection(reader *Reader) *Database {
 	db, err := CreateDatabaseConnection(reader)
 	if nil != err {
-		panic(err.Error())
+		log.Fatal(err.Error())
 	}
 
 	return db
@@ -33,6 +34,6 @@ func createDatabaseConnection(reader Reader) *Database {
 func executeMigrations(database *Database) {
 	err := ExecuteMigrations(database)
 	if nil != err {
-		panic(err.Error())
+		log.Fatal(err.Error())
 	}
 }
