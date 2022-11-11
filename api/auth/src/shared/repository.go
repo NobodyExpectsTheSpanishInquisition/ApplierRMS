@@ -14,19 +14,7 @@ type (
 	GormAccountRepository struct {
 		db *Database
 	}
-
-	CannotSaveError struct {
-		message string
-	}
 )
-
-func NewCannotSaveError(message string) CannotSaveError {
-	return CannotSaveError{message: message}
-}
-
-func (err CannotSaveError) Error() string {
-	return err.message
-}
 
 func NewGormAccountRepository(db *Database) *GormAccountRepository {
 	return &GormAccountRepository{db: db}
@@ -43,4 +31,16 @@ func (r GormAccountRepository) Save(account Account) error {
 	return r.db.Db().Transaction(func(tx *gorm.DB) error {
 		return r.db.Db().Create(&account).Error
 	})
+}
+
+type CannotSaveError struct {
+	message string
+}
+
+func NewCannotSaveError(message string) CannotSaveError {
+	return CannotSaveError{message: message}
+}
+
+func (err CannotSaveError) Error() string {
+	return err.message
 }
