@@ -35,15 +35,15 @@ func (r databaseConfigReader) ReadDatabaseHost() string {
 	return viper.GetString(databaseHost)
 }
 
-func InitConfigReader() (Reader, error) {
+func InitConfigReader() (*Reader, error) {
 	var err error
 	var reader Reader
 
 	viper.SetConfigFile(GetEnvPath().Path())
 	err = viper.ReadInConfig()
 	if nil != err {
-		return reader, err
+		return &reader, err
 	}
 
-	return Reader{}, err
+	return &reader, err
 }
