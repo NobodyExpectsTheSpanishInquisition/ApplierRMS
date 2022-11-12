@@ -24,7 +24,7 @@ func (r GormAccountRepository) FindAccountByEmail(email Email) (Account, bool) {
 	var account Account
 	err := r.db.Db().First(&account, "email = @email", sql.Named("email", email.String())).Error
 
-	return account, nil != err
+	return account, nil == err
 }
 
 func (r GormAccountRepository) Save(account Account) error {

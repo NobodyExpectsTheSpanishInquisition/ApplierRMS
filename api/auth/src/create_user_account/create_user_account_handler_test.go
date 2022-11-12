@@ -57,7 +57,7 @@ func TestHandle_ShouldPass_WhenAccountWithProvidedEmailAlreadyExistsAndErrorIsRe
 
 	err = handle(command, repository)
 
-	if nil == err {
+	if err.Error() != newNotUniqueEmailError().Error() {
 		t.Fail()
 	}
 
@@ -77,7 +77,7 @@ func getCommand() (createUserAccountCommand, error) {
 		return createUserAccountCommand{}, err
 	}
 
-	return newCreateUserAccountCommand(id, email, shared.NewPassword("3740AE24-57CC-4076-85F3-14C69C11A5E3")), err
+	return newCreateUserAccountCommand(id, email, shared.NewPassword("test_password")), err
 }
 
 func getDatabaseConnection() (*database.Database, error) {

@@ -16,6 +16,10 @@ type (
 	}
 )
 
+func newNotUniqueEmailError() NotUniqueEmailError {
+	return NotUniqueEmailError{}
+}
+
 func newCreateUserAccountCommand(id AccountId, email Email, password Password) createUserAccountCommand {
 	return createUserAccountCommand{id: id, email: email, password: password}
 }
@@ -24,7 +28,7 @@ func handle(command createUserAccountCommand, accountRepository AccountRepositor
 	var err error
 
 	if false == isProvidedEmailUnique(command.email, accountRepository) {
-		return NotUniqueEmailError{}
+		return newNotUniqueEmailError()
 	}
 
 	account := NewAccount(command.id, command.email, command.password)
@@ -42,7 +46,7 @@ func handle(command createUserAccountCommand, accountRepository AccountRepositor
 func isProvidedEmailUnique(email Email, repository AccountRepositoryInterface) bool {
 	_, found := repository.FindAccountByEmail(email)
 
-	return false != found
+	return false == found
 }
 
 func (n NotUniqueEmailError) Error() string {
