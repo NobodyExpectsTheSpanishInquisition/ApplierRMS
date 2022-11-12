@@ -5,7 +5,6 @@ import (
 	"auth/database"
 	"auth/src/shared"
 	"database/sql"
-	"github.com/google/uuid"
 	"testing"
 )
 
@@ -16,7 +15,10 @@ func TestHandle_ShouldPass_WhenUserAccountWasSuccessfullyCreated(t *testing.T) {
 	}
 
 	repository := getAccountRepository(db)
-	command := getCommand()
+	command, err := getCommand()
+	if nil != err {
+		t.Fatal(err.Error())
+	}
 
 	err = handle(command, repository)
 	if nil != err {
@@ -39,12 +41,15 @@ func TestHandle_ShouldPass_WhenAccountWithProvidedEmailAlreadyExistsAndErrorIsRe
 	}
 
 	repository := getAccountRepository(db)
-	command := getCommand()
+	command, err := getCommand()
+	if nil != err {
+		t.Fatal(err.Error())
+	}
 
 	err = repository.Save(shared.Account{
-		Id:       command.id,
-		Email:    command.email,
-		Password: command.password,
+		Id:       command.id.String(),
+		Email:    command.email.String(),
+		Password: command.password.String(),
 	})
 	if err != nil {
 		t.Fatal(err.Error())
@@ -59,9 +64,20 @@ func TestHandle_ShouldPass_WhenAccountWithProvidedEmailAlreadyExistsAndErrorIsRe
 	db.Db().Where("id = @id", sql.Named("id", command.id)).Delete(shared.Account{})
 }
 
-func getCommand() createUserAccountCommand {
-	accountId, _ := uuid.Parse("A2EA711C-EC4A-4386-A307-D9E375714C33")
-	return newCreateUserAccountCommand(accountId, "test@email.com", "$2a$10$VcQUgZvK5xElmfNNeYemtuxSzM.B5bRf9dP5YyMu8QJrYvn.USWa6")
+func getCommand() (createUserAccountCommand, error) {
+	var err error
+
+	id, err := shared.NewAccountId("D6A7520E-26EA-41B5-9183-9D14745D697C")
+	if nil != err {
+		return createUserAccountCommand{}, err
+	}
+
+	email, err := shared.NewEmail("test@email.com")
+	if nil != err {
+		return createUserAccountCommand{}, err
+	}
+
+	return newCreateUserAccountCommand(id, email, shared.NewPassword("3740AE24-57CC-4076-85F3-14C69C11A5E3")), err
 }
 
 func getDatabaseConnection() (*database.Database, error) {

@@ -8,7 +8,7 @@ import (
 
 type (
 	AccountRepositoryInterface interface {
-		FindAccountByEmail(email string) (Account, bool)
+		FindAccountByEmail(email Email) (Account, bool)
 		Save(account Account) error
 	}
 	GormAccountRepository struct {
@@ -20,9 +20,9 @@ func NewGormAccountRepository(db *Database) *GormAccountRepository {
 	return &GormAccountRepository{db: db}
 }
 
-func (r GormAccountRepository) FindAccountByEmail(email string) (Account, bool) {
+func (r GormAccountRepository) FindAccountByEmail(email Email) (Account, bool) {
 	var account Account
-	err := r.db.Db().First(&account, "email = @email", sql.Named("email", email)).Error
+	err := r.db.Db().First(&account, "email = @email", sql.Named("email", email.String())).Error
 
 	return account, nil != err
 }

@@ -3,26 +3,21 @@ package create_user_account
 import (
 	. "auth/src/shared"
 	"fmt"
-	. "github.com/google/uuid"
 )
 
 type (
 	createUserAccountCommand struct {
-		id       UUID
-		email    string
-		password string
+		id       AccountId
+		email    Email
+		password Password
 	}
 
 	NotUniqueEmailError struct {
 	}
 )
 
-func newCreateUserAccountCommand(id UUID, email string, password string) createUserAccountCommand {
+func newCreateUserAccountCommand(id AccountId, email Email, password Password) createUserAccountCommand {
 	return createUserAccountCommand{id: id, email: email, password: password}
-}
-
-func (n NotUniqueEmailError) Error() string {
-	return "Cannot create account. Email already exists in database."
 }
 
 func handle(command createUserAccountCommand, accountRepository AccountRepositoryInterface) error {
@@ -44,8 +39,12 @@ func handle(command createUserAccountCommand, accountRepository AccountRepositor
 	return err
 }
 
-func isProvidedEmailUnique(email string, repository AccountRepositoryInterface) bool {
+func isProvidedEmailUnique(email Email, repository AccountRepositoryInterface) bool {
 	_, found := repository.FindAccountByEmail(email)
 
 	return false != found
+}
+
+func (n NotUniqueEmailError) Error() string {
+	return "Cannot create account. Email already exists in database."
 }
