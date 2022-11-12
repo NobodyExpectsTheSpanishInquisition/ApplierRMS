@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/google/uuid"
 	"net/mail"
+	"strings"
 )
 
 type (
@@ -18,7 +19,7 @@ type (
 func NewAccountId(id string) (AccountId, error) {
 	var err error
 
-	parsedUuid, err := uuid.Parse(id)
+	parsedUuid, err := uuid.Parse(strings.ToUpper(id))
 	if nil != err {
 		return AccountId{}, newInvalidUuidError(fmt.Sprintf("Uuid: %s is invalid", id))
 	}
