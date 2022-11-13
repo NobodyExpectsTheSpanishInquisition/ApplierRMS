@@ -19,7 +19,7 @@ func newDatabase(db *gorm.DB) *Database {
 	return &Database{db: db}
 }
 
-func CreateDatabaseConnection(r config.Reader) (*Database, error) {
+func CreateDatabaseConnection(r *config.Reader) (*Database, error) {
 	dsn := createDsn(
 		r.DatabaseConfigReader.ReadDatabaseHost(),
 		r.DatabaseConfigReader.ReadDatabaseUser(),
@@ -28,11 +28,7 @@ func CreateDatabaseConnection(r config.Reader) (*Database, error) {
 		r.DatabaseConfigReader.ReadDatabasePort(),
 	)
 
-	db, err := gorm.Open(
-		postgres.New(
-			postgres.Config{DSN: dsn},
-		), &gorm.Config{},
-	)
+	db, err := gorm.Open(postgres.New(postgres.Config{DSN: dsn}), &gorm.Config{})
 
 	return newDatabase(db), err
 }

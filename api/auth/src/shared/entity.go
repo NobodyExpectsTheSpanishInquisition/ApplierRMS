@@ -1,13 +1,11 @@
 package shared
 
-import . "github.com/google/uuid"
-
 type Account struct {
-	Id       UUID
+	Id       string
 	Email    string
 	Password string
 }
 
-func NewAccount(id UUID, email string, password string) Account {
-	return Account{Id: id, Email: email, Password: password}
+func NewAccount(id AccountId, email Email, password Password) Account {
+	return Account{Id: id.String(), Email: email.String(), Password: password.String()}
 }
