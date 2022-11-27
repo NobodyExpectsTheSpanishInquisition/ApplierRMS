@@ -56,3 +56,18 @@ services:
       - ./api/companies/:/var/www/html/api/:rw
     depends_on:
       - companies
+
+  rabbitmq:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: dockerfile.rabbitmq
+      args:
+        - IMAGE_TAG=${RABBITMQ_IMAGE_TAG}
+    container_name: ${RABBITMQ_CONTAINER_NAME}
+    ports:
+      - ${RABBITMQ_MANAGEMENT_EXTERNAL_PORT}:15672
+      - ${RABBITMQ_AMQP_EXTERNAL_PORT}:5672
+    depends_on:
+      - companies

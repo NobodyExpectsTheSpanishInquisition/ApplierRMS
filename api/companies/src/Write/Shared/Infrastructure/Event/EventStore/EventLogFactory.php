@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Write\Shared\Infrastructure\Event\EventStore;
 
 use App\Write\Shared\Application\Event\EventIdFactoryInterface;
-use App\Write\Shared\Domain\Event\EventInterface;
+use App\Shared\Domain\Event\EventInterface;
 use App\Write\Shared\Infrastructure\Entity\EventLog;
 
 final class EventLogFactory

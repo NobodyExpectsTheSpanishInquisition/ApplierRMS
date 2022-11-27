@@ -12,7 +12,9 @@ RUN set -ex \
     postgresql-dev
 
 RUN docker-php-ext-install pdo pdo_pgsql \
-    && docker-php-ext-enable pdo_pgsql
+    && docker-php-ext-enable pdo_pgsql \
+    && docker-php-ext-install sockets \
+    && docker-php-ext-enable sockets
 
 COPY ./config/opcache.ini.example /usr/local/etc/php/conf.d/opcache.ini
 COPY ./config/xdebug.ini.example /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
@@ -22,5 +24,9 @@ COPY ./config/error_reporting.ini.example /usr/local/etc/php/conf.d/error_report
 COPY ./api/companies /var/www/html/api
 
 WORKDIR /var/www/html/api
+
+RUN rm -r ./vendor \
+    && rm -r ./composer.lock \
+    && rm -r ./var/cache
 
 RUN composer install && composer update && composer dump-autoload

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Shared\Infrastructure\Event\EventStore;
+namespace App\Tests\Stub;
 
-use App\Write\Shared\Domain\Event\EventInterface;
+use App\Shared\Domain\Event\EventInterface;
 
 final class EventStub implements EventInterface
 {

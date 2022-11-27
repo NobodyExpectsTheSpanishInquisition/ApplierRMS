@@ -81,14 +81,14 @@ parameters:
 			path: src/Write/Shared/Infrastructure/Entity/EventLog.php
 
 		-
-			message: "#^Property App\\\\Write\\\\Shared\\\\Infrastructure\\\\Event\\\\MessengerEventBus\\:\\:\\$eventStore is never read, only written\\.$#"
+			message: "#^Property App\\\\Tests\\\\Shared\\\\Infrastructure\\\\Event\\\\EventStore\\\\EventLogRepositoryTest\\:\\:\\$entityManager \\(Doctrine\\\\ORM\\\\EntityManagerInterface\\) does not accept object\\|null\\.$#"
 			count: 1
-			path: src/Write/Shared/Infrastructure/Event/MessengerEventBus.php
+			path: tests/Shared/Infrastructure/Event/EventStore/EventLogRepositoryTest.php
 
 		-
-			message: "#^Property App\\\\Write\\\\Shared\\\\Infrastructure\\\\Event\\\\MessengerEventBus\\:\\:\\$events is never read, only written\\.$#"
+			message: "#^Property App\\\\Tests\\\\Shared\\\\Infrastructure\\\\Event\\\\EventStore\\\\EventLogRepositoryTest\\:\\:\\$repository \\(App\\\\Write\\\\Shared\\\\Infrastructure\\\\Event\\\\EventStore\\\\EventLogRepository\\) does not accept object\\|null\\.$#"
 			count: 1
-			path: src/Write/Shared/Infrastructure/Event/MessengerEventBus.php
+			path: tests/Shared/Infrastructure/Event/EventStore/EventLogRepositoryTest.php
 
 		-
 			message: "#^Property App\\\\Tests\\\\Shared\\\\Infrastructure\\\\Event\\\\EventStore\\\\EventSerializerInterfaceTest\\:\\:\\$serializer \\(App\\\\Write\\\\Shared\\\\Infrastructure\\\\Event\\\\EventStore\\\\EventSerializerInterface\\) does not accept object\\|null\\.$#"
