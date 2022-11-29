@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Queue;
 
+use App\Shared\Application\Exception\ApplicationException;
+use Exception;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 
 final class RabbitMqQueueClient implements QueueClientInterface
 {
     public function __construct(
         private readonly AMQPStreamConnection $connection,
-        private readonly AmqpMessageFactory $amqpMessageFactory
-    ) {
+        private readonly AmqpMessageFactory   $amqpMessageFactory
+    )
+    {
     }
 
     /**
@@ -27,6 +30,10 @@ final class RabbitMqQueueClient implements QueueClientInterface
         }
 
         $channel->close();
-        $this->connection->close();
+        try {
+            $this->connection->close();
+        } catch (Exception $e) {
+            throw new ApplicationException($e->getMessage());
+        }
     }
 }
