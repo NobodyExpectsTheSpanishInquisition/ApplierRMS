@@ -68,6 +68,5 @@ services:
     container_name: ${RABBITMQ_CONTAINER_NAME}
     ports:
       - ${RABBITMQ_MANAGEMENT_EXTERNAL_PORT}:15672
-      - ${RABBITMQ_AMQP_EXTERNAL_PORT}:5672
     depends_on:
       - companies
