@@ -3,6 +3,7 @@
 namespace App\Tests\Shared\Infrastructure\Event\EventStore;
 
 use App\Tests\IntegrationTestCase;
+use App\Tests\Stub\EventStub;
 use App\Write\Shared\Infrastructure\Event\EventStore\EventSerializerInterface;
 
 final class EventSerializerInterfaceTest extends IntegrationTestCase

@@ -3,6 +3,7 @@
 namespace App\Tests\Shared\Infrastructure\Event\EventStore;
 
 use App\Tests\IntegrationTestCase;
+use App\Tests\Stub\EventStub;
 use App\Write\Shared\Application\Event\EventId;
 use App\Write\Shared\Application\Transaction\CannotPersistException;
 use App\Write\Shared\Infrastructure\Entity\EventLog;

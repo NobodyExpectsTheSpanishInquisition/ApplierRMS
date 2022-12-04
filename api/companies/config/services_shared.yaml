@@ -1,3 +1,9 @@
+parameters:
+  ampq.rabbitmq.port: '%env(resolve:AMQP_RABBIT_MQ_PORT)%'
+  ampq.rabbitmq.host: '%env(resolve:AMQP_RABBIT_MQ_HOST)%'
+  ampq.rabbitmq.user: '%env(resolve:AMQP_RABBIT_MQ_USER)%'
+  ampq.rabbitmq.password: '%env(resolve:AMQP_RABBIT_MQ_PASSWORD)%'
+
 services:
   _defaults:
     autowire: true      # Automatically injects dependencies in your services.
@@ -14,3 +20,13 @@ services:
   App\Shared\Domain\Factory\UserIdFactoryInterface: '@App\Shared\Infrastructure\Uuid\IdFactory'
 
   App\Write\Shared\Application\Event\EventIdFactoryInterface: '@App\Shared\Infrastructure\Uuid\IdFactory'
+
+  App\Shared\Infrastructure\Queue\AmqpMessageFactory: ~
+  App\Shared\Infrastructure\Queue\RabbitMqQueueClient:
+    factory: [ '@App\Shared\Infrastructure\Queue\RabbitMqQueueClientFactory', 'create' ]
+    arguments: [
+      '%ampq.rabbitmq.port%',
+      '%ampq.rabbitmq.host%',
+      '%ampq.rabbitmq.user%',
+      '%ampq.rabbitmq.password%'
+    ]

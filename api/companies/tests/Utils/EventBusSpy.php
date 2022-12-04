@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Utils;
 
 use App\Write\Shared\Domain\Event\EventBusInterface;
-use App\Write\Shared\Domain\Event\EventInterface;
+use App\Shared\Domain\Event\EventInterface;
 
 final class EventBusSpy implements EventBusInterface
 {

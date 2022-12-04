@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Write\Shared\Infrastructure\Entity;
 
 use App\Write\Shared\Application\Event\EventId;
-use App\Write\Shared\Domain\Event\EventInterface;
+use App\Shared\Domain\Event\EventInterface;
 use App\Write\Shared\Infrastructure\Event\EventStore\EventData;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping\Column;
