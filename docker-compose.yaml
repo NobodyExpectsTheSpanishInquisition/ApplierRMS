@@ -25,6 +25,18 @@ services:
     ports:
       - "${DATABASE_AUTH_EXTERNAL_PORT}:5432"
 
+  auth:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: dockerfile.auth
+      args:
+        - IMAGE_TAG=${AUTH_IMAGE_TAG}
+    container_name: ${AUTH_CONTAINER_NAME}
+    depends_on:
+      - database_auth
+
   companies:
     env_file:
       - .env

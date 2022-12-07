@@ -1,0 +1,10 @@
+ARG IMAGE_TAG
+FROM golang:${IMAGE_TAG}
+
+WORKDIR /app
+
+COPY ./api/auth/ ./
+RUN go mod download \
+    & go build
+
+CMD ["tail" , "-f", "/dev/null"]
