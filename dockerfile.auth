@@ -5,6 +5,6 @@ WORKDIR /app
 
 COPY ./api/auth/ ./
 RUN go mod download \
-    & go build
+    && go build
 
 CMD ["tail" , "-f", "/dev/null"]

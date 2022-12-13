@@ -1,6 +1,7 @@
 package main
 
 import (
+	"auth/amqp"
 	. "auth/config"
 	. "auth/database"
 	"log"
@@ -11,6 +12,17 @@ func main() {
 
 	db := createDatabaseConnection(reader)
 	executeMigrations(db)
+
+	amqpConsumer, err := amqp.CreateAmqpConsumer(reader.AmqpConsumerConfigReader)
+
+	if nil != err {
+		log.Fatal(err.Error())
+	}
+
+	err = amqpConsumer.Consume()
+	if nil != err {
+		log.Fatal(err.Error())
+	}
 }
 
 func initConfig() *Reader {
