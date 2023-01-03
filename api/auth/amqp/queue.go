@@ -27,12 +27,14 @@ func CreateAmqpConsumer(reader config.AmqpConsumerConfigReader) (AmqpConsumerInt
 	var err error
 	var amqpConsumer AmqpConsumerInterface
 
-	connection, err := amqp.Dial(createDsn(
+	connection, err := amqp.DialConfig(createDsn(
 		reader.ReadAmqpConsumerHost(),
 		reader.ReadAmqpConsumerUser(),
 		reader.ReadAmqpConsumerPassword(),
 		reader.ReadAmqpConsumerPort(),
-	))
+	), amqp.Config{Properties: amqp.Table{
+		"connection_name": "AUTH_MODULE",
+	}})
 
 	if nil != err {
 		return amqpConsumer, err
@@ -45,8 +47,8 @@ func CreateAmqpConsumer(reader config.AmqpConsumerConfigReader) (AmqpConsumerInt
 
 	queue, err := channel.QueueDeclare(
 		reader.ReadAmqpQueueName(),
-		false,
 		true,
+		false,
 		false,
 		false,
 		nil,
@@ -71,18 +73,24 @@ func (r rabbitMqAmqpConsumer) Consume() error {
 		nil,
 	)
 	if err != nil {
+		err = r.channel.Close()
+
 		return err
 	}
 
-	log.Printf("Fetched: %d messages from queue: %s", len(messages), r.queue.Name)
+	log.Printf("Fetched messages from queue: %s", r.queue.Name)
 
 	for message := range messages {
 		log.Printf("Consuming message id: %s", message.MessageId)
 
-		println(message.Body)
-	}
+		log.Print("Body:", string(message.Body))
 
-	log.Printf("Consumed: %d messages from queue: %s", len(messages), r.queue.Name)
+		err := message.Ack(true)
+		log.Print("Acked")
+		if err != nil {
+			log.Print(err.Error())
+		}
+	}
 
 	return err
 }
