@@ -10,11 +10,12 @@ final class RabbitMqQueueClientFactory
 {
     public function create(int $port, string $host, string $user, string $password): RabbitMqQueueClient
     {
-        AMQPStreamConnection::create_connection([['host' => $host, 'port' => $port, 'user' => $user, 'password' => $password]]);
         $connection = new AMQPStreamConnection($host, $port, $user, $password);
         $channel = $connection->channel();
 
-        $channel->queue_declare();
+        $channel->exchange_declare('test','fanout');
+        $channel->queue_declare('test', false, true, false, false);
+        $channel->queue_bind('test','test');
 
         return new RabbitMqQueueClient($connection, new AmqpMessageFactory());
     }
