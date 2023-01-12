@@ -26,7 +26,7 @@ final class RabbitMqQueueClient implements QueueClientInterface
 
         foreach ($events as $event) {
             $message = $this->amqpMessageFactory->fromEvent($event);
-            $channel->basic_publish($message,'test');
+            $channel->basic_publish($message,RabbitMqConfiguration::EXCHANGE);
         }
 
         $channel->close();

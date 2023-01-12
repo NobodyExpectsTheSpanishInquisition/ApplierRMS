@@ -13,9 +13,7 @@ final class RabbitMqQueueClientFactory
         $connection = new AMQPStreamConnection($host, $port, $user, $password);
         $channel = $connection->channel();
 
-        $channel->exchange_declare('test','fanout');
-        $channel->queue_declare('test', false, true, false, false);
-        $channel->queue_bind('test','test');
+        $channel->exchange_declare(RabbitMqConfiguration::EXCHANGE, RabbitMqConfiguration::EXCHANGE_TYPE);
 
         return new RabbitMqQueueClient($connection, new AmqpMessageFactory());
     }
